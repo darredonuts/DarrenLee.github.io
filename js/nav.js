@@ -13,10 +13,10 @@
 
 (function () {
   const items = [
-    { key: 'about',      label: 'about me',   href: 'index.html'      },
-    { key: 'coursework', label: 'coursework', href: 'coursework.html' },
-    { key: 'projects',   label: 'projects',   href: 'projects.html'   },
-    { key: 'resume',     label: 'resume',     href: 'resume.html'     },
+    { key: 'about',      label: 'about me',   href: 'index.html',      peek: 'joltik.webp'  },
+    { key: 'coursework', label: 'coursework', href: 'coursework.html', peek: 'minun.webp'   },
+    { key: 'projects',   label: 'projects',   href: 'projects.html',   peek: 'plusle.png'   },
+    { key: 'resume',     label: 'resume',     href: 'resume.html',     peek: 'dedenne.png'  },
   ];
 
   // If we're served from a subfolder (e.g. /projects/foo.html) prepend ../ so
@@ -28,7 +28,12 @@
 
   const links = items.map(it => {
     const cls = `nav-link nav-${it.key}${it.key === active ? ' is-active' : ''}`;
-    return `<a class="${cls}" href="${prefix}${it.href}">${it.label}</a>`;
+    return `
+      <span class="nav-item">
+        <img class="nav-peek" src="${prefix}images/nav/${it.peek}" alt="" aria-hidden="true" onerror="this.remove()" />
+        <a class="${cls}" href="${prefix}${it.href}">${it.label}</a>
+      </span>
+    `;
   }).join('');
 
   const pokeballSvg = `
@@ -52,19 +57,19 @@
       <g clip-path="url(#pk-clip)">
         <rect x="0" y="0" width="64" height="32" fill="#FF4D4D"/>
         <rect x="0" y="32" width="64" height="32" fill="#E7ECF5"/>
-        <ellipse cx="32" cy="22" rx="19" ry="17" fill="#FFD400"/>
+        <ellipse cx="32" cy="17" rx="20" ry="11" fill="#FFD400"/>
       </g>
-      <path d="M17 12 L10 1 L24 11 Z" fill="#FFD400"/>
-      <path d="M12.5 5 L10 1 L17.5 7 Z" fill="#0B0D12"/>
-      <path d="M47 12 L54 1 L40 11 Z" fill="#FFD400"/>
-      <path d="M51.5 5 L54 1 L46.5 7 Z" fill="#0B0D12"/>
+      <path d="M17 11 L10 1 L24 10 Z" fill="#FFD400"/>
+      <path d="M12.5 4.5 L10 1 L17.5 6.5 Z" fill="#0B0D12"/>
+      <path d="M47 11 L54 1 L40 10 Z" fill="#FFD400"/>
+      <path d="M51.5 4.5 L54 1 L46.5 6.5 Z" fill="#0B0D12"/>
       <circle cx="32" cy="32" r="27" fill="none" stroke="#0B0D12" stroke-width="3"/>
       <rect x="2" y="29" width="60" height="6" fill="#0B0D12"/>
-      <ellipse cx="23.5" cy="22" rx="2.6" ry="3.2" fill="#0B0D12"/>
-      <ellipse cx="40.5" cy="22" rx="2.6" ry="3.2" fill="#0B0D12"/>
-      <circle cx="16.5" cy="27.5" r="3.6" fill="#FF4D4D"/>
-      <circle cx="47.5" cy="27.5" r="3.6" fill="#FF4D4D"/>
-      <path d="M28.5 27.5 q3.5 2.6 7 0" stroke="#0B0D12" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="23.5" cy="16" rx="2.5" ry="3" fill="#0B0D12"/>
+      <ellipse cx="40.5" cy="16" rx="2.5" ry="3" fill="#0B0D12"/>
+      <circle cx="17" cy="20.5" r="3.2" fill="#FF4D4D"/>
+      <circle cx="47" cy="20.5" r="3.2" fill="#FF4D4D"/>
+      <path d="M28.5 23.5 q3.5 2.2 7 0" stroke="#0B0D12" stroke-width="1.4" fill="none" stroke-linecap="round"/>
     </svg>
   `;
 

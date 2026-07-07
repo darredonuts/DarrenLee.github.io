@@ -160,6 +160,31 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav-projects   { --link-c: var(--c-projects);   color: var(--c-projects); }
 .nav-resume     { --link-c: var(--c-resume);     color: var(--c-resume); }
 
+/* pokemon peeking over each nav tab on hover — anchored above the pill
+   so it never overlaps (and never blocks) the link text itself */
+.nav-item {
+  position: relative;
+  display: inline-flex;
+}
+.nav-peek {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transform: translate(-50%, 12px) scale(0.75);
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.55));
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 3;
+}
+.nav-item:hover .nav-peek {
+  opacity: 1;
+  transform: translate(-50%, -2px) scale(1);
+}
+
 /* ============================================================
    PAGE SHELL
    ============================================================ */
@@ -169,21 +194,6 @@ h1, h2, h3, h4, p { margin: 0; }
   padding: clamp(24px, 4vw, 48px) var(--gutter) var(--s-9);
 }
 
-/* About page = fits in one viewport, vertically centered between nav & footer */
-body[data-page="about"] {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-body[data-page="about"] main.page {
-  display: flex;
-  align-items: center;
-  padding-top: var(--s-5);
-  padding-bottom: var(--s-5);
-}
-body[data-page="about"] .about-grid {
-  width: 100%;
-}
 .page-title {
   font-family: var(--font-display-chunky);
   font-weight: 800;
@@ -306,7 +316,7 @@ body[data-page="about"] .about-grid {
 /* ---- Right content ---- */
 .about-content {
   max-width: 640px;
-  padding-top: 90px;
+  padding-top: clamp(16px, 2.5vw, 40px);
 }
 .about-content .hello {
   font-family: var(--font-display);
@@ -342,11 +352,9 @@ body[data-page="about"] .about-grid {
 /* ============================================================
    COURSEWORK PAGE
    ============================================================ */
-body[data-page="coursework"] main.page {
+body[data-page="coursework"] main.page,
+body[data-page="about"] main.page {
   padding-top: var(--s-5);
-}
-body[data-page="coursework"] .about-content {
-  padding-top: clamp(16px, 2.5vw, 40px);
 }
 .coursework-title {
   font-family: var(--font-display);
@@ -409,52 +417,6 @@ body[data-page="projects"] main.page {
   max-width: 1400px;
   padding-top: clamp(40px, 5vw, 64px);
 }
-.projects-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s-5);
-  margin-bottom: clamp(28px, 4vw, 48px);
-  flex-wrap: wrap;
-}
-.projects-head .intro {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 3.4vw, 38px);
-  color: var(--text-heading);
-  line-height: 1.1;
-  font-weight: 700;
-}
-.projects-filters {
-  display: flex;
-  gap: clamp(18px, 2.4vw, 32px);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  color: var(--text);
-}
-.projects-filters button {
-  appearance: none;
-  border: none;
-  background: transparent;
-  padding: 4px 0;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-  letter-spacing: 0.01em;
-  position: relative;
-  transition: color .15s ease;
-}
-.projects-filters button:hover { color: var(--c-projects); }
-.projects-filters button.is-active { color: var(--c-projects); }
-.projects-filters button.is-active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  bottom: -4px;
-  height: 2px;
-  background: currentColor;
-  box-shadow: 0 0 8px var(--c-projects);
-}
-
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -530,18 +492,6 @@ body[data-page="projects"] main.page {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--c-projects);
-}
-
-/* category color hint for the placeholder bg — rename data-cat values to your own */
-.project-tile[data-cat="cat1"] { --tile-bg: #1c2333; }
-.project-tile[data-cat="cat2"] { --tile-bg: #241c33; }
-.project-tile[data-cat="cat3"] { --tile-bg: #1c3330; }
-
-/* filter state */
-.projects-grid.f-cat1 .project-tile:not([data-cat="cat1"]),
-.projects-grid.f-cat2 .project-tile:not([data-cat="cat2"]),
-.projects-grid.f-cat3 .project-tile:not([data-cat="cat3"]) {
-  display: none;
 }
 
 @media (max-width: 820px) {

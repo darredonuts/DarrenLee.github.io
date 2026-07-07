@@ -20,25 +20,13 @@
 
   <main class="page">
 
-    <header class="projects-head">
-      <div class="intro">Selected Work</div>
-      <!-- TODO: rename filter labels/data-filter values to your own categories -->
-      <nav class="projects-filters" aria-label="Project filter">
-        <button type="button" class="is-active" data-filter="all">all</button>
-        <button type="button" data-filter="cat1">category 1</button>
-        <button type="button" data-filter="cat2">category 2</button>
-        <button type="button" data-filter="cat3">category 3</button>
-      </nav>
-    </header>
-
     <!-- TODO: each tile is one project — duplicate/edit/remove as needed.
-         data-cat must match one of the filter buttons above.
          Drop a cover image at the referenced path, or leave it to show
          the placeholder text. Link each tile to its own page in /projects/
          (see projects/project-template.html for a starting point). -->
     <div class="projects-grid" id="projectsGrid">
 
-      <a class="project-tile" data-cat="cat1" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-1.png</div>
         <img class="cover" src="images/projects/project-1.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -47,7 +35,7 @@
         </div>
       </a>
 
-      <a class="project-tile" data-cat="cat2" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-2.png</div>
         <img class="cover" src="images/projects/project-2.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -56,7 +44,7 @@
         </div>
       </a>
 
-      <a class="project-tile" data-cat="cat3" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-3.png</div>
         <img class="cover" src="images/projects/project-3.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -65,7 +53,7 @@
         </div>
       </a>
 
-      <a class="project-tile" data-cat="cat1" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-4.png</div>
         <img class="cover" src="images/projects/project-4.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -74,7 +62,7 @@
         </div>
       </a>
 
-      <a class="project-tile" data-cat="cat2" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-5.png</div>
         <img class="cover" src="images/projects/project-5.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -83,7 +71,7 @@
         </div>
       </a>
 
-      <a class="project-tile" data-cat="cat3" href="projects/project-template.html">
+      <a class="project-tile" href="projects/project-template.html">
         <div class="ph">drop image · images/projects/project-6.png</div>
         <img class="cover" src="images/projects/project-6.png" alt="" onerror="this.remove()" loading="lazy" decoding="async" />
         <div class="overlay">
@@ -101,17 +89,5 @@
   </footer>
 
   <script src="js/nav.js"></script>
-  <script>
-    (function () {
-      const grid = document.getElementById('projectsGrid');
-      const btns = document.querySelectorAll('.projects-filters button');
-      btns.forEach(b => b.addEventListener('click', () => {
-        btns.forEach(x => x.classList.toggle('is-active', x === b));
-        const f = b.dataset.filter;
-        grid.classList.remove('f-cat1', 'f-cat2', 'f-cat3');
-        if (f !== 'all') grid.classList.add('f-' + f);
-      }));
-    })();
-  </script>
 </body>
 </html>
