@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Resume</title>
+  <meta name="description" content="Resume — Your Name." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-page="resume">
+
+  <div id="site-nav-mount"></div>
+
+  <main class="page">
+
+    <header class="resume-head">
+      <div class="title">Resume</div>
+      <div class="meta">
+        <!-- TODO: update the date -->
+        <span>updated MM/DD/YY</span>
+        <span class="dot" aria-hidden="true"></span>
+        <!-- TODO: point this at your resume PDF in /assets/ -->
+        <a href="assets/resume.pdf" target="_blank" rel="noopener">download pdf ↗</a>
+      </div>
+    </header>
+
+    <!-- TODO: drop your resume PDF at assets/resume.pdf — it will show
+         below automatically. Until then this shows a placeholder. -->
+    <div class="resume-frame" id="resumeFrame">
+      <iframe src="assets/resume.pdf#view=FitH" title="Resume (PDF)" loading="lazy"></iframe>
+    </div>
+
+  </main>
+
+  <footer class="site-foot">
+    <span>© 2026 Your Name</span>
+    <span><a href="#" target="_blank" rel="noopener">source</a></span>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script>
+    (function () {
+      fetch('assets/resume.pdf', { method: 'HEAD' })
+        .then(function (res) { if (!res.ok) throw new Error(); })
+        .catch(function () {
+          document.getElementById('resumeFrame').innerHTML =
+            '<div class="resume-empty">Drop your resume PDF at assets/resume.pdf and it will appear here.</div>';
+        });
+    })();
+  </script>
+</body>
+</html>
